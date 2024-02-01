@@ -91,7 +91,7 @@ The following table describes the conversions supported by the ``cast`` function
  ``time``        ``text``, ``varchar``
  ``timestamp``   ``date``, ``text``, ``varchar``
  ``timeuuid``    ``timestamp``, ``date``, ``text``, ``varchar``
- ``tinyint``     ``tinyint``, ``smallint``, ``int``, ``bigint``, ``float``, ``double``, ``decimal``, ``varint``,
+ ``tinyint``     ``smallint``, ``int``, ``bigint``, ``float``, ``double``, ``decimal``, ``varint``,
                  ``text``, ``varchar``
  ``uuid``        ``text``, ``varchar``
  ``varint``      ``tinyint``, ``smallint``, ``int``, ``bigint``, ``float``, ``double``, ``decimal``, ``text``,
@@ -188,7 +188,7 @@ Function name         Output type
 
 For example, to retrieve data up to today, run the following query::
 
-   SELECT * FROM myTable WHERE date >= currentDate()
+   SELECT * FROM myTable WHERE date <= currentDate()
 
 Time conversion functions
 #########################
@@ -215,7 +215,7 @@ Function name         Input type      Description
 .. A number of functions are provided to “convert” the native types into binary data (``blob``). For every
 .. ``<native-type>`` ``type`` supported by CQL (a notable exceptions is ``blob``, for obvious reasons), the function
 .. ``typeAsBlob`` takes a argument of type ``type`` and return it as a ``blob``. Conversely, the function ``blobAsType``
-.. takes a 64-bit ``blob`` argument and convert it to a ``bigint`` value. And so for instance, ``bigintAsBlob(3)`` is
+.. takes a ``blob`` argument and converts it to a type ``type`` value. And so for instance, ``bigintAsBlob(3)`` is
 .. ``0x0000000000000003`` and ``blobAsBigint(0x0000000000000003)`` is ``3``.
 
 
@@ -224,7 +224,7 @@ Blob conversion functions
 A number of functions are provided to “convert” the native types into binary data (``blob``). For every
 ``<native-type>`` ``type`` supported by CQL (a notable exception is a ``blob``, for obvious reasons), the function
 ``typeAsBlob`` takes an argument of type ``type`` and returns it as a ``blob``. Conversely, the function ``blobAsType``
-takes a 64-bit ``blob`` argument and converts it to a ``bigint`` value. For example, ``bigintAsBlob(3)`` is
+takes a ``blob`` argument and converts it to a type ``type`` value. For example, ``bigintAsBlob(3)`` is
 ``0x0000000000000003`` and ``blobAsBigint(0x0000000000000003)`` is ``3``.
 
 .. _udfs:
